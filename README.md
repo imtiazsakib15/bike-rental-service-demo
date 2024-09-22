@@ -29,8 +29,8 @@ This is the backend of the **Bike Rental Service** web app, providing API endpoi
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/imtiazsakib15/bike-rental-service.git
-   cd bike-rental-service
+   git clone https://github.com/imtiazsakib15/bike-rental-service-server.git
+   cd bike-rental-service-server
    ```
 
 2. Install dependencies:

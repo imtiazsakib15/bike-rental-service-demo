@@ -61,23 +61,6 @@ userSchema.post('save', async function (doc, next) {
   next();
 });
 
-userSchema.post('find', async function (doc, next) {
-  if (doc) doc.password = '';
-  next();
-});
-userSchema.post('findOne', async function (doc, next) {
-  if (doc) doc.password = '';
-  next();
-});
-userSchema.post('findOneAndUpdate', async function (doc, next) {
-  if (doc) doc.password = '';
-  next();
-});
-userSchema.post('findOneAndDelete', async function (doc, next) {
-  if (doc) doc.password = '';
-  next();
-});
-
 const User = model<IUser>('User', userSchema);
 
 export default User;
