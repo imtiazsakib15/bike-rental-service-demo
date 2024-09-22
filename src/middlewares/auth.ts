@@ -12,7 +12,10 @@ export const auth = (
   return catchAsync(async (req, res, next) => {
     const accessToken = req.headers?.authorization?.split(' ')[1];
     if (!accessToken)
-      throw new AppError(httpStatus.UNAUTHORIZED, 'No access token provided');
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
+      );
 
     // Verify access token signature and decode payload
     const decodedUser = jwt.verify(
@@ -21,15 +24,22 @@ export const auth = (
     ) as JwtPayload;
 
     if (!decodedUser)
-      throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid access token');
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
+      );
 
     const user = await User.findOne({ email: decodedUser.email });
-    if (!user) throw new AppError(httpStatus.UNAUTHORIZED, 'User not found');
+    if (!user)
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
+      );
 
     if (!checkedRoles.includes(user.role) || user.role !== decodedUser.role)
       throw new AppError(
-        httpStatus.FORBIDDEN,
-        'Unauthorized to perform this action',
+        httpStatus.UNAUTHORIZED,
+        'You have no access to this route',
       );
 
     req.user = user;
