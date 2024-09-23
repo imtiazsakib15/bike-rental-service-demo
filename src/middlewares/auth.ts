@@ -42,7 +42,6 @@ export const auth = (
         'You have no access to this route',
       );
 
-    req.user = user;
     next();
   });
 };
